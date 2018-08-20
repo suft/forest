@@ -1,9 +1,9 @@
-var tree;
-var leaves;
-var limit;
-var day;
-var night;
-var time;
+let tree;
+let leaves;
+let limit;
+let day;
+let night;
+let time;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -19,7 +19,7 @@ function timeOfDay() {
 }
 
 function plantTree() {
-    var root = new Branch(
+    let root = new Branch(
         createVector(width / 2, height),
         createVector(width / 2, height - random(100, 200)),
         random(10, 15)
@@ -30,14 +30,14 @@ function plantTree() {
 }
 
 function growTree() {
-    for (var i = tree.length - 1; i >= 0; i--) {
+    for (let i = tree.length - 1; i >= 0; i--) {
         if (!tree[i].grown && random(0, 1) > 0.7) {
-            var leftTwig = tree[i].twig(
+            let leftTwig = tree[i].twig(
                 random(-PI / 10, -4 * PI / 10),
                 random(0.5, 0.9),
                 random(0.7, 0.9)
             );
-            var rightTwig = tree[i].twig(
+            let rightTwig = tree[i].twig(
                 random(PI / 10, 4 * PI / 10),
                 random(0.5, 0.9),
                 random(0.7, 0.9)
@@ -50,7 +50,7 @@ function growTree() {
 }
 
 function renderTree() {
-    for (var i = 0; i < tree.length; i++) {
+    for (let i = 0; i < tree.length; i++) {
         tree[i].render();
     }
 }
@@ -60,10 +60,10 @@ function sproutLeaves() {
 }
 
 function growLeaves() {
-    for (var i = 0; i < tree.length; i++) {
+    for (let i = 0; i < tree.length; i++) {
         if (!tree[i].grown || tree[i].sprout) {
             print("regrow");
-            var leaf  = new Leaf(tree[i].end.copy(), random(1, 20));
+            let leaf  = new Leaf(tree[i].end.copy(), random(1, 20));
             leaves.push(leaf);
             tree[i].grown = true;
             tree[i].sprout = true;
@@ -72,7 +72,7 @@ function growLeaves() {
 }
 
 function renderLeaves() {
-    for (var i = leaves.length - 1; i >= 0; i--) {
+    for (let i = leaves.length - 1; i >= 0; i--) {
         if (leaves[i].life >= 1 && random(0, 1) > 0.995) leaves[i].fall = true;
         if (leaves[i].position.y > height + (leaves[i].size * 2)) {
             leaves.splice(i, 1);
